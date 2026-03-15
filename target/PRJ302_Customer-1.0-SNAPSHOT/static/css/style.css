@@ -1,0 +1,104 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 11, 2026, 8:58:32 AM
+    Author     : ASUS
+*/
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin:0;
+    background:#f4f6f9;
+}
+
+.container{
+    width:1000px;
+    margin:auto;
+}
+
+h2{
+    color:#333;
+}
+
+/* NAVBAR */
+
+.navbar{
+    background:#2c3e50;
+    padding:15px;
+}
+
+.navbar a{
+    color:white;
+    margin-right:20px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.navbar a:hover{
+    color:#f1c40f;
+}
+
+/* TABLE */
+
+table{
+    border-collapse:collapse;
+    width:100%;
+    background:white;
+}
+
+table th{
+    background:#34495e;
+    color:white;
+    padding:10px;
+}
+
+table td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+}
+
+table tr:hover{
+    background:#f2f2f2;
+}
+
+/* BUTTON */
+
+button{
+    background:#3498db;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#2980b9;
+}
+
+/* FORM */
+
+input, select{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+}
+
+/* CARD */
+
+.card{
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    box-shadow:0px 2px 5px rgba(0,0,0,0.1);
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    margin-top:40px;
+    padding:20px;
+    background:#eee;
+}
