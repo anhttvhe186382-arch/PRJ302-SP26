@@ -7,18 +7,22 @@ public class Account {
     private String password;
     private String fullname;
     private String phone;
-    private String email;
+    private String gender;
+    private String idCardNo;
+    private String role;
 
     public Account() {
     }
 
-    public Account(int userId, String username, String password, String fullname, String phone, String email) {
+    public Account(int userId, String username, String password, String fullname, String phone, String gender, String idCardNo, String role) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.fullname = fullname;
         this.phone = phone;
-        this.email = email;
+        this.gender = gender;
+        this.idCardNo = idCardNo;
+        this.role = role;
     }
 
     public int getUserId() {
@@ -61,11 +65,30 @@ public class Account {
         this.phone = phone;
     }
 
-    public String getEmail() {
-        return email;
+    public String getGender() {
+        return gender;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
+
+    public String getIdCardNo() {
+        return idCardNo;
+    }
+
+    public void setIdCardNo(String idCardNo) {
+        this.idCardNo = idCardNo;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    
+
 }

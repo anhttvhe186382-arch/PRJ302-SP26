@@ -29,9 +29,9 @@ public class MotorbikeController extends HttpServlet {
 
             int id = Integer.parseInt(request.getParameter("id"));
 
-            Motorbike m = dao.getMotorbikeById(id);
+//            Motorbike m = dao.getMotorbikeById(id);
 
-            request.setAttribute("motorbike", m);
+//            request.setAttribute("motorbike", m);
             request.getRequestDispatcher("view/motorbike-detail.jsp")
                     .forward(request, response);
         }

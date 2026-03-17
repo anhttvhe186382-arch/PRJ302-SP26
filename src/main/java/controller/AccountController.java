@@ -6,6 +6,7 @@ import model.Account;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.IOException;
+import model.AccountProfile;
 
 public class AccountController extends HttpServlet {
 
@@ -18,25 +19,29 @@ public class AccountController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(req, resp);
-        if (request.getMethod().equalsIgnoreCase("GET")) {
 
-            request.getRequestDispatcher("view/profile.jsp")
-                    .forward(request, response);
+        HttpSession session = request.getSession(false);
+
+        if (session == null) {
+            response.sendRedirect("login");
+            return;
+        }
+        Account auth = (session != null) ? (Account) session.getAttribute("account") : null;
+
+        if (auth == null) {
+            response.sendRedirect("login");
+            return;
         }
 
-        if (request.getMethod().equalsIgnoreCase("POST")) {
+        String username = auth.getUsername();
 
-            Account acc = (Account) request.getSession().getAttribute("account");
+        AccountDAO dao = new AccountDAO();
 
-            String fullname = request.getParameter("fullname");
-            String phone = request.getParameter("phone");
-            String email = request.getParameter("email");
+        Account acc = dao.getAccountProfile(username);
+        System.out.println("user name từ session : " + username);
+        request.setAttribute("account", acc);
+        request.getRequestDispatcher("view/profile.jsp").forward(request, response);
 
-            AccountDAO dao = new AccountDAO();
-            dao.updateProfile(acc.getUserId(), fullname, phone, email);
-
-            response.sendRedirect("profile");
-        }
     }
 
     @Override

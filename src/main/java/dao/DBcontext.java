@@ -1,43 +1,56 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
-import java.sql.Driver;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- *
- * @author admin
- */
 public class DBcontext {
-    public static Connection connectDB() throws SQLException{
-        
+
+    protected Connection connection;
+
+    public DBcontext() {
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=PRJ302_Project_Group3_IS2003;trustServerCertificate=true";
+        String user = "sa";
+        String pass = "123";
+
         try {
-            // dang ky drive cho project
+            // Load driver
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            // tao ket noi
-            Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=test;trustServerCertificate=true", "sa", "sa");
-            System.out.println(conn);
-            System.out.println("succcessfulabccc");
-            // ket noi thanh cong tra ve conn
-           return conn;
-        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("Driver loaded successfully!");
+
+            // Connect DB
+            connection = DriverManager.getConnection(url, user, pass);
+            System.out.println("Connection established!");
+
+        } catch (ClassNotFoundException e) {
+            System.out.println("❌ SQL Server Driver not found!");
+            e.printStackTrace();
+
+        } catch (SQLException e) {
+            System.out.println("❌ SQL Exception occurred!");
+
+            // In lỗi chi tiết
+            System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("Error Code: " + e.getErrorCode());
+
+            // In toàn bộ stack trace
+            e.printStackTrace();
         }
- 
-        return null;
-    }
-    public static void main(String[] args) throws SQLException {
-        System.out.println(DBcontext.connectDB());
-        
     }
 
-    static Connection getConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public static void main(String[] args) {
+        DBcontext db = new DBcontext();
+        Connection conn = db.getConnection();
+
+        if (conn != null) {
+            System.out.println("✅ Connected to database successfully!");
+        } else {
+            System.out.println("❌ Failed to connect to database!");
+        }
     }
 }
